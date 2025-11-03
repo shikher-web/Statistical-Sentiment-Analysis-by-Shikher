@@ -284,3 +284,49 @@ export const generateDetailedReport = async (statsData: StatisticsData): Promise
       handleGeminiError(error, 'detailed report generation', responseText);
     }
 }
+
+export const generateShareablePost = async (): Promise<string> => {
+    let responseText: string = '';
+    try {
+      const appDetails = `
+- **App Name**: Statistical Sentiment Analysis by Shikher
+- **Core Function**: An advanced web application for analyzing sentiment from text data using the Gemini API.
+- **Key Features**:
+  - **Single & Batch Analysis**: Analyze individual texts or upload files for bulk processing.
+  - **Aspect-Based Sentiment**: Identify sentiment for specific topics within a text.
+  - **Statistical Dashboard**: Visualize sentiment trends and distributions with interactive charts.
+  - **AI-Powered Reporting**: Automatically generate detailed, human-readable reports from statistical data.
+  - **Analysis History**: Keep a searchable log of all past analyses.
+- **Technology**: Built with React, TypeScript, Tailwind CSS, and powered by Google's Gemini API.
+- **Creator**: Innovated and Designed by Shikher.
+      `;
+
+      const prompt = `
+        You are a tech storyteller and social media virtuoso, an expert at making complex tech sound exciting and accessible.
+        Your mission: Draft a **short, punchy, and highly unique** LinkedIn post for a new web application. Avoid standard marketing jargon.
+
+        Frame it as a micro-story or a bold statement about the future of data analysis. The tone should be confident, innovative, and intriguing—something that makes people stop scrolling and think.
+
+        **Constraints:**
+        - **Brevity is key:** Keep it concise and easily scannable.
+        - **Unique Hook:** Start with a question or a bold claim.
+        - **Impactful Emojis:** Use 1-2 relevant emojis to add personality, not clutter.
+        - **Strategic Hashtags:** Include 3-5 hyper-relevant, powerful hashtags.
+
+        Here are the application's details:
+        ${appDetails}
+
+        Distill these features into their most exciting essence. The post is for Shikher, the creator, to share on his profile. Make it sound personal and visionary.
+      `;
+  
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-pro', // Using a more powerful model for creative text generation
+        contents: prompt,
+      });
+
+      responseText = response.text;
+      return responseText;
+    } catch (error) {
+      handleGeminiError(error, 'shareable post generation', responseText);
+    }
+}

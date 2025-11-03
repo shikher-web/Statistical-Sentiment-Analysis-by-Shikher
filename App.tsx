@@ -3,9 +3,10 @@ import { SingleAnalysisView } from './components/SingleAnalysisView';
 import { BatchAnalysisView } from './components/BatchAnalysisView';
 import { StatisticsView } from './components/StatisticsView';
 import { HistoryView } from './components/HistoryView';
-import { ChartPieIcon, DocumentTextIcon, ClockIcon, TableCellsIcon, CodeBracketIcon } from './components/IconComponents';
+import { AboutView } from './components/AboutView';
+import { ChartPieIcon, DocumentTextIcon, ClockIcon, TableCellsIcon, CodeBracketIcon, InformationCircleIcon } from './components/IconComponents';
 
-type Tab = 'single' | 'batch' | 'statistics' | 'history';
+type Tab = 'single' | 'batch' | 'statistics' | 'history' | 'about';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('single');
@@ -20,6 +21,8 @@ const App: React.FC = () => {
         return <StatisticsView />;
       case 'history':
         return <HistoryView />;
+      case 'about':
+        return <AboutView />;
       default:
         return <SingleAnalysisView />;
     }
@@ -59,6 +62,7 @@ const App: React.FC = () => {
               <TabButton tab="batch" label="Batch Analysis" icon={<TableCellsIcon className="w-5 h-5" />} />
               <TabButton tab="statistics" label="Statistics" icon={<ChartPieIcon className="w-5 h-5" />} />
               <TabButton tab="history" label="History" icon={<ClockIcon className="w-5 h-5" />} />
+              <TabButton tab="about" label="About & Share" icon={<InformationCircleIcon className="w-5 h-5" />} />
             </nav>
           </div>
 
