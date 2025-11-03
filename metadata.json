@@ -1,5 +1,5 @@
 {
-  "name": "Statistical Sentiment Analysis by Shikher.",
+  "name": "Statistical Sentiment Analysis by Shikher",
   "description": "An advanced web application by Shikher for analyzing sentiment from text data. It provides detailed sentiment scores, confidence levels, aspect-based analysis, and statistical validation, all powered by the Gemini API.",
   "requestFramePermissions": []
 }
